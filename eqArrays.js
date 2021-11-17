@@ -10,18 +10,25 @@ const assertEqual = function (actual, expected) {
 
 function eqArray(a, b){
     const container =[];
-    for (let i = 0; i < a.length; i++) {
-     
-      if (a[i] === b[i]) {
-        container.push(true);
-      }
-      else {
-        container.push(false); 
-      }
-      
-  }
-  let checker = arr => arr.every(Boolean);
-  return checker(container);
+    // validate the length of the arrays
+    if (a.length === b.length) {
+        // loop through the elements and compare
+            for (let i = 0; i < a.length; i++) { 
+                if (a[i] === b[i]) {
+                    container.push(true);
+                }
+                else {
+                    container.push(false); 
+                }
+                
+            }
+            // check 
+            let checker = arr => arr.every(Boolean);
+            return checker(container);
+    }
+    else{
+        return false;
+    }
 }
 
 console.log(assertEqual(eqArray([2,3,4], [2,5,4]), true));
