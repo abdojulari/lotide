@@ -1,3 +1,22 @@
+const takeUntil = function(array, callback){
+    const newArray = [];
+    array.some(function(el){
+        newArray.push(el);
+        
+        return callback(el);
+        
+    })
+   return newArray.slice(0, -1);
+}
+
+const data1 = [1,2,5,7,2,-1,2,4,5];
+const results1 = takeUntil(data1, x => x < 0);
+console.log(results1);
+console.log('----');
+const data2 = ["I've", "Been", "to", "Hollywood", ",", "I've", "been", "to", "Redwood"];
+const results2 = takeUntil(data2, x => x === ',');
+console.log(results2);
+
 function eqArray(a, b){
     const container =[];
     // validate the length of the arrays
@@ -25,20 +44,5 @@ function assertArraysEqual(x, y) {
     console.log(eqArray(x,y));
 }
 
-
-const words = ["ground", "control", "to", "major", "tom"];
-const letters = ["groundnut", "centre", "till", "main", "tomorrow"];
-const map = function(array, callback) {
-   const results = [];
-
-   for(let item of array) {
-     results.push(callback(item));
-   }
-   return results;
-}
-const result = map(words, word => word[0]);
-const result1 = map(letters, letter => letter[0]);
-console.log(result);
-console.log(result1);
-assertArraysEqual(result, result1);
-
+assertArraysEqual(results1, [1,2,5,7,2]);
+assertArraysEqual(results2, ["I've", "Been", "to", "Hollywood"])
